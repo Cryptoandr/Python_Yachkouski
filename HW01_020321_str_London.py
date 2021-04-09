@@ -11,3 +11,4 @@ c = '***+London+***'
 print(F"Использование  str.lstrip(*) : {c.lstrip('*')}")
 print(F"Использование  str.rstrip(*) : {c.rstrip('*')}")
 print(F"Использование str.strip(+*) : {c.strip('+*')}")
+print("Что-то добавили")
