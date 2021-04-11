@@ -3,6 +3,6 @@ height = int(input("Введите Ваш рост в сантиметрах: ")
 weight = int(input("Введите Ваш вес в килограммах: "))
 bmi = int(weight/(height**2)*10000)
 print(f'Ваш индекс массы тела {bmi}' )
-indict = '20=============================50'
-scale = indict[:bmi-19] + '|' + indict[bmi-18:]
-print(scale)
+ind = '20=============================50'
+scale = ind[:bmi-19] + '|' + ind[bmi-18:]
+print('\033[32m' + scale[:7] + '\033[33m' + scale[8:13] + '\033[31m' + scale[14:] + '\033[0m')
