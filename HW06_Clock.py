@@ -1,30 +1,19 @@
 from datetime import datetime
-import time
-import os
-
-def get_time(): 
-    cur_time = datetime.now()
-    return cur_time.strftime('%X')
+import time, os, random
 
 def separator():
     count = 0
     r_with = '  \u2588\u2588   '
     r_without = '       '
-    sp = ['=', '=', '=', '=', '=', '=', '=']
     while True:
-        for i in range(7):
-            sp[i] = ()
-            # if i == count:
-            #     sp[i] = r_with
-            # else:
-            #     sp[i] = r_without
+        sp = [r_with if i == count else r_without for i in range(7)]
         yield sp
         if count<6:
             count += 1
         else: 
             count = 0
 gen_separ = separator()
-color_var = '\033[31m'
+
 # digts elements
 R1 = '\u2588\u2588\u2588\u2588\u2588 '
 R2 = '\u2588   \u2588 '
@@ -49,7 +38,6 @@ digits = {
     '9': (R1, R2, R2, R1, R8, R8, R1)
 }
 
-
 def form_displayed_time(str_t, dig_in_func, g_s, col_v):
     compiled_time = []
     for k in range(7):
@@ -68,12 +56,12 @@ def output_compiled_time(t):
         print(t[k])
     print()
 
-def main():
+def main(color_list = ('\033[34m', '\033[31m', '\033[33m', '\033[32m', '\033[33m')):
     while True:
-        sht = get_time()
+        sht = datetime.now().strftime('%X')
+        colored = random.choice(color_list)
         cur_separ = next(gen_separ)
-        fdt = form_displayed_time(sht, digits, cur_separ, color_var)
+        fdt = form_displayed_time(sht, digits, cur_separ, colored)
         output_compiled_time(fdt)
-
-        time.sleep(1)
+        time.sleep(0.5)
 main()
